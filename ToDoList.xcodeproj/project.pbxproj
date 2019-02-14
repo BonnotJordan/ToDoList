@@ -54,14 +54,38 @@
 		082A49C322159E60000269EE /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				0856304D2215A3C700695E86 /* Controllers */,
+				0856304C2215A3BC00695E86 /* Views */,
+				0856304B2215A3A400695E86 /* Models */,
 				082A49C422159E60000269EE /* AppDelegate.swift */,
-				082A49C622159E60000269EE /* ChecklistViewController.swift */,
-				082A49C822159E60000269EE /* Main.storyboard */,
 				082A49CB22159E61000269EE /* Assets.xcassets */,
-				082A49CD22159E61000269EE /* LaunchScreen.storyboard */,
 				082A49D022159E61000269EE /* Info.plist */,
 			);
 			path = ToDoList;
+			sourceTree = "<group>";
+		};
+		0856304B2215A3A400695E86 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0856304C2215A3BC00695E86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				082A49C822159E60000269EE /* Main.storyboard */,
+				082A49CD22159E61000269EE /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0856304D2215A3C700695E86 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				082A49C622159E60000269EE /* ChecklistViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
