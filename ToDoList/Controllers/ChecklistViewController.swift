@@ -31,7 +31,13 @@ class ChecklistViewController: UITableViewController {
         return checklistItems.count
     }
 
-
+    @IBAction func addDummyTodo(_ sender: Any) {
+        let itemCreated = ChecklistItem.init(text: "Un item ajouté")
+        checklistItems.append(itemCreated)
+        let indexPath = IndexPath(row: checklistItems.count-1, section: 0)
+        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+    }
+    
     //delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
@@ -43,7 +49,12 @@ class ChecklistViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         checklistItems[indexPath.item].toggleChecked()
-        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        checklistItems.remove(at: indexPath.item)
+        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
     
     func configureCheckmark(for cell: UITableViewCell, withItem item : ChecklistItem){
