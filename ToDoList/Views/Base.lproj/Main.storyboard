@@ -35,7 +35,7 @@
                     <navigationItem key="navigationItem" title="CheckList" id="Vr9-1C-Tze">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vmA-d9-Nn3">
                             <connections>
-                                <action selector="addDummyTodo:" destination="Ei6-iI-MTT" id="22m-fG-vhh"/>
+                                <segue destination="996-Su-ZTi" kind="presentation" identifier="addItem" id="sLB-4O-00i"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -43,6 +43,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGo-ad-Q7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1788" y="133.5832083958021"/>
+        </scene>
+        <!--Add item-->
+        <scene sceneID="a1F-o7-6FQ">
+            <objects>
+                <tableViewController id="eQg-rf-JEl" customClass="AddItemViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="P0Q-3j-eOY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Ud5-XW-wCo">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="sd8-wJ-uMG">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sd8-wJ-uMG" id="DLt-I9-ND1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G7B-g9-rMq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done:" destination="eQg-rf-JEl" eventType="editingDidEndOnExit" id="mFc-rz-gDn"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G7B-g9-rMq" firstAttribute="leading" secondItem="DLt-I9-ND1" secondAttribute="leading" id="WGh-Z6-VIU"/>
+                                                <constraint firstAttribute="bottom" secondItem="G7B-g9-rMq" secondAttribute="bottom" id="b8y-il-6cy"/>
+                                                <constraint firstAttribute="trailing" secondItem="G7B-g9-rMq" secondAttribute="trailing" id="d63-lT-TDQ"/>
+                                                <constraint firstItem="G7B-g9-rMq" firstAttribute="top" secondItem="DLt-I9-ND1" secondAttribute="top" id="dPG-FH-xC7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="eQg-rf-JEl" id="RHJ-Mu-sVY"/>
+                            <outlet property="delegate" destination="eQg-rf-JEl" id="5Ck-TN-ujW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add item" id="t41-XB-Aa3">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jeQ-YX-gol">
+                            <connections>
+                                <action selector="cancel:" destination="eQg-rf-JEl" id="Uql-hp-s9b"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="iX4-hy-GJo">
+                            <connections>
+                                <action selector="done:" destination="eQg-rf-JEl" id="iK3-MY-8ex"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="iX4-hy-GJo" id="Per-xU-YyH"/>
+                        <outlet property="textField" destination="G7B-g9-rMq" id="dyW-JZ-mXd"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W1O-fP-t6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3596" y="133.5832083958021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ioW-Ov-7XN">
@@ -61,6 +126,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vP-rZ-HhS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="848.79999999999995" y="133.5832083958021"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yzs-Dg-yTk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="996-Su-ZTi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9qc-mx-2xT">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eQg-rf-JEl" kind="relationship" relationship="rootViewController" id="Vr9-Ke-Vl4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cTT-8w-bWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2656.8000000000002" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
