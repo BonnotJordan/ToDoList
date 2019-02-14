@@ -8,14 +8,22 @@
 
 import UIKit
 
-class ChecklistItem: UIView {
+class ChecklistItem {
+    var text: String
+    var checked: Bool
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    init(text: String, checked: Bool = false) {
+        self.text = text
+        self.checked = checked
     }
-    */
-
+    
+    func toggleChecked() {
+        if(checked){
+            self.checked  = false
+        } else {
+            self.checked = true
+        }
+    }
+    
 }

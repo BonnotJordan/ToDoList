@@ -42,6 +42,8 @@ class ChecklistViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        checklistItems[indexPath.item].toggleChecked()
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
     }
     
     func configureCheckmark(for cell: UITableViewCell, withItem item : ChecklistItem){
