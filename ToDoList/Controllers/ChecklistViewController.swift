@@ -6,24 +6,51 @@
 //  Copyright © 2019 lpiem. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class ChecklistViewController: UITableViewController {
 
+    var checklistItems = Array<ChecklistItem>()
     override func viewDidLoad() {
         super.viewDidLoad()
+        let item1 = ChecklistItem.init(text: "Cellule1")
+        let item2 = ChecklistItem.init(text: "Cellule2",checked: true)
+        let item3 = ChecklistItem.init(text: "Cellule3")
+        let item4 = ChecklistItem.init(text: "Cellule4", checked: true)
+        checklistItems.append(item1)
+        checklistItems.append(item2)
+        checklistItems.append(item3)
+        checklistItems.append(item4)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    //datasource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return checklistItems.count
     }
 
 
+    //delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
-        cell.textLabel?.text = "Ceci est un test"
+        configureText(for: cell, withItem: checklistItems[indexPath.item])
+        configureCheckmark(for: cell, withItem: checklistItems[indexPath.item])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func configureCheckmark(for cell: UITableViewCell, withItem item : ChecklistItem){
+        cell.accessoryType = item.checked ? .checkmark : .none
+        
+    }
+    
+    func configureText(for cell: UITableViewCell, withItem item: ChecklistItem) {
+        cell.textLabel?.text = item.text
     }
 }
 
