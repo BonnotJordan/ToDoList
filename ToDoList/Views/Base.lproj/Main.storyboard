@@ -63,20 +63,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G7B-g9-rMq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <rect key="frame" x="16" y="11" width="343" height="22"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="done:" destination="eQg-rf-JEl" eventType="editingDidEndOnExit" id="mFc-rz-gDn"/>
+                                                        <outlet property="delegate" destination="eQg-rf-JEl" id="cGt-Lx-3LQ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="G7B-g9-rMq" firstAttribute="leading" secondItem="DLt-I9-ND1" secondAttribute="leading" id="WGh-Z6-VIU"/>
-                                                <constraint firstAttribute="bottom" secondItem="G7B-g9-rMq" secondAttribute="bottom" id="b8y-il-6cy"/>
-                                                <constraint firstAttribute="trailing" secondItem="G7B-g9-rMq" secondAttribute="trailing" id="d63-lT-TDQ"/>
-                                                <constraint firstItem="G7B-g9-rMq" firstAttribute="top" secondItem="DLt-I9-ND1" secondAttribute="top" id="dPG-FH-xC7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="G7B-g9-rMq" secondAttribute="bottom" id="hya-iA-Zty"/>
+                                                <constraint firstItem="G7B-g9-rMq" firstAttribute="top" secondItem="DLt-I9-ND1" secondAttribute="topMargin" id="mPN-7E-3hF"/>
+                                                <constraint firstItem="G7B-g9-rMq" firstAttribute="leading" secondItem="DLt-I9-ND1" secondAttribute="leadingMargin" id="qhg-Bl-qji"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="G7B-g9-rMq" secondAttribute="trailing" id="r9E-Tc-u1H"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
