@@ -14,6 +14,7 @@
 		082A49CF22159E61000269EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 082A49CD22159E61000269EE /* LaunchScreen.storyboard */; };
 		0856304F2215A44100695E86 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856304E2215A44100695E86 /* ChecklistItem.swift */; };
 		085630532215CB1D00695E86 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085630522215CB1D00695E86 /* AddItemViewController.swift */; };
+		08FC5502221F025700BEC81C /* ChecklistItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FC5501221F025700BEC81C /* ChecklistItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		082A49D022159E61000269EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0856304E2215A44100695E86 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		085630522215CB1D00695E86 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		08FC5501221F025700BEC81C /* ChecklistItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			children = (
 				082A49C622159E60000269EE /* ChecklistViewController.swift */,
 				085630522215CB1D00695E86 /* AddItemViewController.swift */,
+				08FC5501221F025700BEC81C /* ChecklistItemCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				085630532215CB1D00695E86 /* AddItemViewController.swift in Sources */,
 				0856304F2215A44100695E86 /* ChecklistItem.swift in Sources */,
 				082A49C522159E60000269EE /* AppDelegate.swift in Sources */,
+				08FC5502221F025700BEC81C /* ChecklistItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

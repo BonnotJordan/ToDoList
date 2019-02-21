@@ -18,13 +18,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="voe-oI-OsW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="voe-oI-OsW" customClass="ChecklistItemCell" customModule="ToDoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="voe-oI-OsW" id="vgk-rS-HRD">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="✓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1l6-o5-eIR">
+                                            <rect key="frame" x="16" y="10.5" width="15" height="22.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifG-oF-LOY">
+                                            <rect key="frame" x="39" y="10.5" width="268" height="22.5"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="labeltext"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ifG-oF-LOY" firstAttribute="leading" secondItem="1l6-o5-eIR" secondAttribute="trailing" constant="8" id="AjA-D0-ka2"/>
+                                        <constraint firstItem="1l6-o5-eIR" firstAttribute="leading" secondItem="vgk-rS-HRD" secondAttribute="leadingMargin" id="DDy-8g-KwB"/>
+                                        <constraint firstItem="1l6-o5-eIR" firstAttribute="baseline" secondItem="ifG-oF-LOY" secondAttribute="baseline" id="JzW-fG-FGE"/>
+                                        <constraint firstItem="1l6-o5-eIR" firstAttribute="bottom" secondItem="vgk-rS-HRD" secondAttribute="bottomMargin" id="WVm-uh-5b3"/>
+                                        <constraint firstItem="1l6-o5-eIR" firstAttribute="centerY" secondItem="vgk-rS-HRD" secondAttribute="centerY" id="sha-u8-V5s"/>
+                                        <constraint firstItem="ifG-oF-LOY" firstAttribute="centerY" secondItem="vgk-rS-HRD" secondAttribute="centerY" id="ttp-8W-DaI"/>
+                                        <constraint firstAttribute="trailing" secondItem="ifG-oF-LOY" secondAttribute="trailing" id="wJa-Kz-lz8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkLabel" destination="1l6-o5-eIR" id="srO-e8-ITb"/>
+                                    <outlet property="itemLabel" destination="ifG-oF-LOY" id="EN8-Aw-id7"/>
+                                    <segue destination="996-Su-ZTi" kind="presentation" identifier="editItem" trigger="accessoryAction" id="8aj-3C-7jo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -147,4 +176,7 @@
             <point key="canvasLocation" x="2656.8000000000002" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8aj-3C-7jo"/>
+    </inferredMetricsTieBreakers>
 </document>

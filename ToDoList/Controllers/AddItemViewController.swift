@@ -9,16 +9,19 @@
 import UIKit
 
 class AddItemViewController: UITableViewController {
+    
+    var delegate: AddItemViewControllerDelegate?
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     @IBAction func done(_ sender: Any) {
+        let newItem = ChecklistItem(text: textField.text!)
         print(textField.text!)
-        dismiss(animated: true, completion: nil)
+        delegate?.addItemViewController(self,didFinishAddingItem: newItem)
     }
     
     @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        delegate?.addItemViewControllerDidCancel(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
