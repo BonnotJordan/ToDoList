@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChecklistItem {
+class ChecklistItem : Codable {
     var text: String
     var checked: Bool
 
@@ -25,5 +25,7 @@ class ChecklistItem {
             self.checked = true
         }
     }
+    
+    
     
 }

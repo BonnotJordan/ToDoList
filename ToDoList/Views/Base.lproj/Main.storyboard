@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--CheckList-->
+        <!--Name of the list-->
         <scene sceneID="mGg-fG-yqX">
             <objects>
                 <tableViewController id="Ei6-iI-MTT" customClass="ChecklistViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                             <outlet property="delegate" destination="Ei6-iI-MTT" id="NLp-Bb-Mbs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="CheckList" id="Vr9-1C-Tze">
+                    <navigationItem key="navigationItem" title="Name of the list" id="Vr9-1C-Tze">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vmA-d9-Nn3">
                             <connections>
                                 <segue destination="996-Su-ZTi" kind="presentation" identifier="addItem" id="sLB-4O-00i"/>
@@ -71,12 +71,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGo-ad-Q7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1841" y="122"/>
         </scene>
         <!--Add item-->
         <scene sceneID="a1F-o7-6FQ">
             <objects>
-                <tableViewController id="eQg-rf-JEl" customClass="AddItemViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="eQg-rf-JEl" customClass="ItemDetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="P0Q-3j-eOY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,12 +150,44 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ei6-iI-MTT" kind="relationship" relationship="rootViewController" id="pcx-gU-Tq3"/>
+                        <segue destination="Ope-cN-NqF" kind="relationship" relationship="rootViewController" id="cfP-po-hmD"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vP-rZ-HhS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="848.79999999999995" y="133.5832083958021"/>
+            <point key="canvasLocation" x="178" y="116"/>
+        </scene>
+        <!--Checklists-->
+        <scene sceneID="TUR-Bt-vbd">
+            <objects>
+                <tableViewController id="Ope-cN-NqF" customClass="AllListViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="acw-Db-s5k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="listName" id="L8a-HJ-aIf">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L8a-HJ-aIf" id="3F0-w7-OaV">
+                                    <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Ei6-iI-MTT" kind="show" identifier="listNameClicked" id="Gf5-K0-Weg"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ope-cN-NqF" id="bdE-vh-SwW"/>
+                            <outlet property="delegate" destination="Ope-cN-NqF" id="ilP-LT-bhI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Checklists" id="sG5-dX-aC8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRU-FI-2vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="969" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yzs-Dg-yTk">
