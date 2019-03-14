@@ -11,13 +11,25 @@ import UIKit
 class AddItemViewController: UITableViewController {
     
     var delegate: AddItemViewControllerDelegate?
+    var isAddingItem: Bool = false
+    var itemToEdit : ChecklistItem?
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
+    
     @IBAction func done(_ sender: Any) {
-        let newItem = ChecklistItem(text: textField.text!)
+        
         print(textField.text!)
-        delegate?.addItemViewController(self,didFinishAddingItem: newItem)
+        if(itemToEdit == nil){
+            print("not edit")
+            let newItem = ChecklistItem(text: textField.text!)
+            delegate?.addItemViewController(self,didFinishAddingItem: newItem)
+        } else {
+            print("edit")
+            itemToEdit?.text = textField.text!
+            delegate?.addItemViewController(self,didFinishEditingItem: itemToEdit!)
+        }
+        //delegate?.addItemViewController(self,didFinishAddingItem: newItem)
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -30,8 +42,15 @@ class AddItemViewController: UITableViewController {
         
     }
     
-    
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(itemToEdit as Any)
+        if(itemToEdit != nil){
+            textField.text = itemToEdit?.text
+            self.title = "Edit an item"
+        }
+        
+    }
     
     
 }
@@ -57,4 +76,5 @@ extension AddItemViewController: UITextFieldDelegate {
 protocol AddItemViewControllerDelegate : class {
     func addItemViewControllerDidCancel(_ controller: AddItemViewController)
     func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: ChecklistItem)
+    func addItemViewController(_ controller: AddItemViewController, didFinishEditingItem item: ChecklistItem)
 }
