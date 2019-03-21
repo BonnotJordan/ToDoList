@@ -16,6 +16,7 @@
 		085630532215CB1D00695E86 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085630522215CB1D00695E86 /* ItemDetailViewController.swift */; };
 		087A7C4C223A9A8F00794307 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A7C4B223A9A8F00794307 /* AllListViewController.swift */; };
 		087A7C4E223AA58D00794307 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087A7C4D223AA58D00794307 /* Checklist.swift */; };
+		08D2AC2E2243845200D76A66 /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D2AC2D2243845200D76A66 /* AddListViewController.swift */; };
 		08FC5502221F025700BEC81C /* ChecklistItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FC5501221F025700BEC81C /* ChecklistItemCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		085630522215CB1D00695E86 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		087A7C4B223A9A8F00794307 /* AllListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		087A7C4D223AA58D00794307 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		08D2AC2D2243845200D76A66 /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
 		08FC5501221F025700BEC81C /* ChecklistItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 				085630522215CB1D00695E86 /* ItemDetailViewController.swift */,
 				08FC5501221F025700BEC81C /* ChecklistItemCell.swift */,
 				087A7C4B223A9A8F00794307 /* AllListViewController.swift */,
+				08D2AC2D2243845200D76A66 /* AddListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				087A7C4C223A9A8F00794307 /* AllListViewController.swift in Sources */,
 				082A49C722159E60000269EE /* ChecklistViewController.swift in Sources */,
+				08D2AC2E2243845200D76A66 /* AddListViewController.swift in Sources */,
 				085630532215CB1D00695E86 /* ItemDetailViewController.swift in Sources */,
 				0856304F2215A44100695E86 /* ChecklistItem.swift in Sources */,
 				082A49C522159E60000269EE /* AppDelegate.swift in Sources */,
