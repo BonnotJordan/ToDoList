@@ -10,31 +10,53 @@ import UIKit
 
 class AllListViewController: UITableViewController {
 
+    var documentDirectory : URL {
+        get {
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        }
+    }
+    var dataFileUrl : URL {
+        get {
+            let fileUrl = documentDirectory.appendingPathComponent("Checklists").appendingPathExtension("json")
+            return fileUrl
+        }
+    }
+    
+    override func awakeFromNib() {
+        loadChecklists()
+    }
+    
     var listToEdit : Checklist? = nil
     var lists = Array<Checklist>()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var listItems1 = Array<ChecklistItem>()
-        listItems1.append(ChecklistItem(text: "Test 1"))
+        //var listItems1 = Array<ChecklistItem>()
+        /*listItems1.append(ChecklistItem(text: "Test 1"))
         listItems1.append(ChecklistItem(text: "Test 2"))
         listItems1.append(ChecklistItem(text: "Test 3"))
-        listItems1.append(ChecklistItem(text: "Test 4"))
+        listItems1.append(ChecklistItem(text: "Test 4"))*/
         
-        var listItems2 = Array<ChecklistItem>()
-        listItems2.append(ChecklistItem(text: "Test 1"))
-        listItems2.append(ChecklistItem(text: "Test 2"))
-        listItems2.append(ChecklistItem(text: "Test 3"))
-        listItems2.append(ChecklistItem(text: "Test 4"))
+        //var listItems2 = Array<ChecklistItem>()
+        /*listItems2.append(ChecklistItem(text: "Test 11"))
+        listItems2.append(ChecklistItem(text: "Test 12"))
+        listItems2.append(ChecklistItem(text: "Test 13"))
+        listItems2.append(ChecklistItem(text: "Test 14"))*/
         
         
-        let list1 = Checklist.init(name: "Liste 1")
-        let list2 = Checklist.init(name: "Liste 2", items: listItems1)
-        let list3 = Checklist.init(name: "Liste 3", items: listItems2)
+        /*let list1 = Checklist.init(name: "Liste 1")
+        let list2 = Checklist.init(name: "Liste 2")
+        let list3 = Checklist.init(name: "Liste 3")
         
         lists.append(list1)
         lists.append(list2)
         lists.append(list3)
+        
+        for list in lists {
+            list.items.append(ChecklistItem(text: "Item for \(list.name)"))
+        }*/
+        
+        //loadChecklists()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -95,7 +117,25 @@ class AllListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         lists.remove(at: indexPath.item)
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        //saveChecklistItems()
+        saveChecklists()
+    }
+    
+    func saveChecklists() {
+        print("Save")
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        let data = try! encoder.encode(lists)
+        try! data.write(to: dataFileUrl)
+    }
+    
+    
+    func loadChecklists() {
+        let jsonFile = try! Data(contentsOf: dataFileUrl)
+        let decoder = JSONDecoder()
+        let data = try! decoder.decode(Array<Checklist>.self, from: jsonFile)
+        lists = data
+        
     }
     
     
@@ -115,7 +155,7 @@ extension AllListViewController : ListDetailViewControllerDelegate {
         dismiss(animated: true, completion: nil)
         lists.append(list)
         tableView.insertRows(at: [IndexPath(row: lists.count - 1, section: 0)], with: UITableView.RowAnimation.automatic)
-        //saveChecklistItems()
+        saveChecklists()
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditingList list: Checklist) {
@@ -124,7 +164,7 @@ extension AllListViewController : ListDetailViewControllerDelegate {
         tableView.reloadRows(at: [IndexPath(row: lists.firstIndex(where: { $0 === list })!, section: 0)], with: UITableView.RowAnimation.automatic)
         
         dismiss(animated: true, completion: nil)
-        //saveChecklistItems()
+        saveChecklists()
     }
     
     

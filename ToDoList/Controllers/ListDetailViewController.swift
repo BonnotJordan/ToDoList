@@ -23,12 +23,10 @@ class ListDetailViewController: UITableViewController {
     
     @IBAction func done(_ sender: Any) {
         print(textField.text!)
-         
-       
         if(listToEdit == nil){
             print("not edit")
             let newList = Checklist.init(name: textField.text!)
-            delegate?.listDetailViewController(self,didFinishEditingList: newList)
+            delegate?.listDetailViewController(self,didFinishAddingList: newList)
         } else {
             print("edit")
             listToEdit?.name = textField.text!

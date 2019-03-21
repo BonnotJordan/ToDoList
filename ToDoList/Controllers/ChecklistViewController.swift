@@ -11,7 +11,7 @@ import UIKit
 
 class ChecklistViewController: UITableViewController {
 
-    var documentDirectory : URL {
+    /*var documentDirectory : URL {
         get {
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         }
@@ -21,7 +21,7 @@ class ChecklistViewController: UITableViewController {
             let fileUrl = documentDirectory.appendingPathComponent("Checklists").appendingPathExtension("json")
             return fileUrl
         }
-    }
+    }*/
     
     var itemToEdit : ChecklistItem? = nil
     var checklistItems = Array<ChecklistItem>()
@@ -31,15 +31,17 @@ class ChecklistViewController: UITableViewController {
         super.viewDidLoad()
         
         self.title = list.name
-        print(documentDirectory)
-        print(dataFileUrl)
-        loadChecklistItems()
+        /*print(documentDirectory)
+        print(dataFileUrl)*/
+        
+        checklistItems = list.items
+        //loadChecklistItems()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func awakeFromNib() {
-        loadChecklistItems()
+        //loadChecklistItems()
     }
     
     //datasource
@@ -66,13 +68,13 @@ class ChecklistViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         checklistItems[indexPath.item].toggleChecked()
         tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        saveChecklistItems()
+        //saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         checklistItems.remove(at: indexPath.item)
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        saveChecklistItems()
+        //saveChecklistItems()
     }
     
     func configureCheckmark(for cell: ChecklistItemCell, withItem item : ChecklistItem){
@@ -109,7 +111,7 @@ class ChecklistViewController: UITableViewController {
         }
     }
     
-    func saveChecklistItems() {
+    /*func saveChecklistItems() {
         print("Save")
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -125,7 +127,7 @@ class ChecklistViewController: UITableViewController {
         let data = try! decoder.decode(Array<ChecklistItem>.self, from: jsonFile)
         checklistItems = data
         
-    }
+    }*/
     
 }
 
@@ -136,7 +138,7 @@ extension ChecklistViewController : ItemDetailViewControllerDelegate {
         tableView.reloadRows(at: [IndexPath(row: checklistItems.firstIndex(where: { $0 === item })!, section: 0)], with: UITableView.RowAnimation.automatic)
         
         dismiss(animated: true, completion: nil)
-        saveChecklistItems()
+        //saveChecklistItems()
     }
     
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
@@ -150,7 +152,7 @@ extension ChecklistViewController : ItemDetailViewControllerDelegate {
         dismiss(animated: true, completion: nil)
         checklistItems.append(item)
         tableView.insertRows(at: [IndexPath(row: checklistItems.count - 1, section: 0)], with: UITableView.RowAnimation.automatic)
-        saveChecklistItems()
+        //saveChecklistItems()
         
     }
     
