@@ -71,12 +71,12 @@ class AllListViewController: UITableViewController {
             delegateVC.list = list
         } else if(segue.identifier == "addList") {
             let navigation = segue.destination as! UINavigationController
-            let delegateVC = navigation.topViewController as! AddListViewController
+            let delegateVC = navigation.topViewController as! ListDetailViewController
             delegateVC.listToEdit = nil
             delegateVC.delegate = self
         } else if(segue.identifier == "editList") {
             let navigation = segue.destination as! UINavigationController
-            let delegateVC = navigation.topViewController as! AddListViewController
+            let delegateVC = navigation.topViewController as! ListDetailViewController
             let cell = sender as! UITableViewCell
             let index = tableView.indexPath(for: cell)
             listToEdit = lists[index!.row]
@@ -103,14 +103,14 @@ class AllListViewController: UITableViewController {
 
 }
 
-extension AllListViewController : AddListViewControllerDelegate {
+extension AllListViewController : ListDetailViewControllerDelegate {
     
-    func addListViewControllerDidCancel(_ controller: AddListViewController) {
+    func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
             print("Cancel")
             dismiss(animated: true, completion: nil)
     }
     
-    func addListViewController(_ controller: AddListViewController, didFinishAddingList list: Checklist) {
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishAddingList list: Checklist) {
         print("Ok",list.name)
         dismiss(animated: true, completion: nil)
         lists.append(list)
@@ -118,7 +118,7 @@ extension AllListViewController : AddListViewControllerDelegate {
         //saveChecklistItems()
     }
     
-    func listDetailViewController(_ controller: AddListViewController, didFinishEditingList list: Checklist) {
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishEditingList list: Checklist) {
         print("new text",list.name)
         
         tableView.reloadRows(at: [IndexPath(row: lists.firstIndex(where: { $0 === list })!, section: 0)], with: UITableView.RowAnimation.automatic)

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddListViewController: UITableViewController {
+class ListDetailViewController: UITableViewController {
 
-    var delegate: AddListViewControllerDelegate?
+    var delegate: ListDetailViewControllerDelegate?
     var listToEdit : Checklist?
     
     @IBOutlet weak var textField: UITextField!
@@ -39,7 +39,7 @@ class AddListViewController: UITableViewController {
     
     @IBAction func cancel(_ sender: Any) {
         //dismiss(animated: true, completion: nil)
-        delegate?.addListViewControllerDidCancel(self)
+        delegate?.listDetailViewControllerDidCancel(self)
     }
     
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ class AddListViewController: UITableViewController {
     
 }
 
-extension AddListViewController: UITextFieldDelegate {
+extension ListDetailViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
@@ -72,9 +72,9 @@ extension AddListViewController: UITextFieldDelegate {
     }
 }
 
-protocol AddListViewControllerDelegate : class {
-    func addListViewControllerDidCancel(_ controller: AddListViewController)
-    func addListViewController(_ controller: AddListViewController, didFinishAddingList list: Checklist)
-    func listDetailViewController(_ controller: AddListViewController, didFinishEditingList list: Checklist)
+protocol ListDetailViewControllerDelegate : class {
+    func listDetailViewControllerDidCancel(_ controller: ListDetailViewController)
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishAddingList list: Checklist)
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishEditingList list: Checklist)
 }
 
