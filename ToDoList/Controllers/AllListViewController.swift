@@ -10,27 +10,19 @@ import UIKit
 
 class AllListViewController: UITableViewController {
 
-    var documentDirectory : URL {
-        get {
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        }
-    }
-    var dataFileUrl : URL {
-        get {
-            let fileUrl = documentDirectory.appendingPathComponent("Checklists").appendingPathExtension("json")
-            return fileUrl
-        }
-    }
+    let dataModel = DataModel.shared
     
-    override func awakeFromNib() {
-        loadChecklists()
-    }
+    
     
     var listToEdit : Checklist? = nil
-    var lists = Array<Checklist>()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dataModel.sortCheckList()
         //var listItems1 = Array<ChecklistItem>()
         /*listItems1.append(ChecklistItem(text: "Test 1"))
         listItems1.append(ChecklistItem(text: "Test 2"))
@@ -73,14 +65,28 @@ class AllListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return lists.count
+        return dataModel.listofChecklists.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listName", for: indexPath)
-        cell.textLabel?.text = lists[indexPath.row].name
-
+        cell.textLabel?.text = dataModel.listofChecklists[indexPath.row].name
+        if (dataModel.listofChecklists[indexPath.row].uncheckedItemsCount == 0) {
+            if (dataModel.listofChecklists[indexPath.row].items.count == 0) {
+                cell.detailTextLabel?.text = "No item"
+            } else {
+                cell.detailTextLabel?.text = "All Done !"
+            }
+        } else {
+            if (dataModel.listofChecklists[indexPath.row].uncheckedItemsCount == 1) {
+                cell.detailTextLabel?.text = "\(String(dataModel.listofChecklists[indexPath.row].uncheckedItemsCount)) item unchecked"
+            } else {
+                cell.detailTextLabel?.text = "\(String(dataModel.listofChecklists[indexPath.row].uncheckedItemsCount)) items unchecked"
+            }
+            
+        }
+        
         return cell
     }
  
@@ -89,7 +95,7 @@ class AllListViewController: UITableViewController {
             let delegateVC = segue.destination as! ChecklistViewController
             let cell = sender
             let index = tableView.indexPath(for: cell as! UITableViewCell)
-            let list = lists[index!.row]
+            let list = dataModel.listofChecklists[index!.row]
             delegateVC.list = list
         } else if(segue.identifier == "addList") {
             let navigation = segue.destination as! UINavigationController
@@ -101,7 +107,7 @@ class AllListViewController: UITableViewController {
             let delegateVC = navigation.topViewController as! ListDetailViewController
             let cell = sender as! UITableViewCell
             let index = tableView.indexPath(for: cell)
-            listToEdit = lists[index!.row]
+            listToEdit = dataModel.listofChecklists[index!.row]
             delegateVC.listToEdit = listToEdit
             delegateVC.delegate = self
         }
@@ -109,34 +115,18 @@ class AllListViewController: UITableViewController {
     
     @IBAction func addDummyList(_ sender : Any) {
         let listCreated = Checklist.init(name: "Dummy")
-        lists.append(listCreated)
-        let indexPath = IndexPath(row: lists.count-1, section: 0)
+        dataModel.listofChecklists.append(listCreated)
+        let indexPath = IndexPath(row: dataModel.listofChecklists.count-1, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        lists.remove(at: indexPath.item)
+        dataModel.listofChecklists.remove(at: indexPath.item)
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        saveChecklists()
-    }
-    
-    func saveChecklists() {
-        print("Save")
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        
-        let data = try! encoder.encode(lists)
-        try! data.write(to: dataFileUrl)
-    }
-    
-    
-    func loadChecklists() {
-        let jsonFile = try! Data(contentsOf: dataFileUrl)
-        let decoder = JSONDecoder()
-        let data = try! decoder.decode(Array<Checklist>.self, from: jsonFile)
-        lists = data
         
     }
+    
+    
     
     
     
@@ -153,18 +143,16 @@ extension AllListViewController : ListDetailViewControllerDelegate {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAddingList list: Checklist) {
         print("Ok",list.name)
         dismiss(animated: true, completion: nil)
-        lists.append(list)
-        tableView.insertRows(at: [IndexPath(row: lists.count - 1, section: 0)], with: UITableView.RowAnimation.automatic)
-        saveChecklists()
+        dataModel.listofChecklists.append(list)
+        print("save list")
+        tableView.insertRows(at: [IndexPath(row: dataModel.listofChecklists.count - 1, section: 0)], with: UITableView.RowAnimation.automatic)
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditingList list: Checklist) {
         print("new text",list.name)
-        
-        tableView.reloadRows(at: [IndexPath(row: lists.firstIndex(where: { $0 === list })!, section: 0)], with: UITableView.RowAnimation.automatic)
-        
+        tableView.reloadRows(at: [IndexPath(row: dataModel.listofChecklists.firstIndex(where: { $0 === list })!, section: 0)], with: UITableView.RowAnimation.automatic)
         dismiss(animated: true, completion: nil)
-        saveChecklists()
+        print("save list")
     }
     
     

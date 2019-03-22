@@ -12,8 +12,15 @@ class Checklist : Codable {
     
     var name : String = ""
     var items = Array<ChecklistItem>()
+    var icon : IconAsset = .NoIcon
     
-    init(name: String, items: Array<ChecklistItem> = Array<ChecklistItem>()) {
+    var uncheckedItemsCount : Int {
+        get {
+            return items.filter{(item) -> Bool in !item.checked }.count
+        }
+    }
+    
+    init(name: String, items: Array<ChecklistItem> = Array<ChecklistItem>(), icon : IconAsset = .NoIcon) {
         self.name = name
         self.items = items
     }

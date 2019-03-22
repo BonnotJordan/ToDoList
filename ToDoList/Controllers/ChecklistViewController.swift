@@ -42,6 +42,7 @@ class ChecklistViewController: UITableViewController {
     
     override func awakeFromNib() {
         //loadChecklistItems()
+        
     }
     
     //datasource
@@ -67,13 +68,18 @@ class ChecklistViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         checklistItems[indexPath.item].toggleChecked()
+        list.items = checklistItems
         tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        print("save list")
+        
         //saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         checklistItems.remove(at: indexPath.item)
+        list.items = checklistItems
         tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        
         //saveChecklistItems()
     }
     
@@ -138,6 +144,8 @@ extension ChecklistViewController : ItemDetailViewControllerDelegate {
         tableView.reloadRows(at: [IndexPath(row: checklistItems.firstIndex(where: { $0 === item })!, section: 0)], with: UITableView.RowAnimation.automatic)
         
         dismiss(animated: true, completion: nil)
+        print("save list")
+        list.items = checklistItems
         //saveChecklistItems()
     }
     
@@ -153,7 +161,8 @@ extension ChecklistViewController : ItemDetailViewControllerDelegate {
         checklistItems.append(item)
         tableView.insertRows(at: [IndexPath(row: checklistItems.count - 1, section: 0)], with: UITableView.RowAnimation.automatic)
         //saveChecklistItems()
-        
+        print("save list")
+        list.items = checklistItems
     }
     
 }
